@@ -1,5 +1,5 @@
 # Vehicle-crawler
-A web crawler to collect vehicle classifieds and import into a database. The database can later be used to notify users interested in certain type of vehicle through a web or mobile app.
+A web crawler to collect vehicle classifieds and send them to a web server. The web server can later be used to organize the data into a database.
 
 # Framework
 The framework for the development of this project is Scrapy(https://scrapy.org/).
