@@ -9,7 +9,7 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'vehicle_crawler'
+BOT_NAME = 'motos'
 
 SPIDER_MODULES = ['vehicle_crawler.spiders']
 NEWSPIDER_MODULE = 'vehicle_crawler.spiders'
@@ -27,7 +27,7 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 8
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -55,7 +55,7 @@ ROBOTSTXT_OBEY = True
 #DOWNLOADER_MIDDLEWARES = {
 #    'vehicle_crawler.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
-
+DOWNLOADER_MIDDLEWARES = {'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,}
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
@@ -88,3 +88,13 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+from scrapy.exporters import JsonLinesItemExporter
+class MyJsonLinesItemExporter(JsonLinesItemExporter):
+    def __init__(self, file, **kwargs):
+        super(MyJsonLinesItemExporter, self).__init__(file, ensure_ascii=False, **kwargs)
+
+FEED_EXPORTERS = {
+    'jsonlines': 'vehicle_crawler.settings.MyJsonLinesItemExporter',
+    'jl': 'vehicle_crawler.settings.MyJsonLinesItemExporter',
+}

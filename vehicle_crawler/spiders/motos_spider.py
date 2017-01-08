@@ -12,7 +12,7 @@ class QuotesSpider(scrapy.Spider):
 			
 			yield {
 		        'title': moto.css(".vehicle").css("span.p_t strong").xpath('.//span/text()').extract(),
-			'time': moto.css(".clsfd_list_row_options").xpath('.//strong/text()').extract()[0].encode('utf-8'),
+			'time': moto.css(".clsfd_list_row_options").xpath('.//strong/text()').extract()[0],
 			'registration': moto.css(".registration").xpath('.//text()').extract()[0].strip(),
 			'mileage': moto.css(".mileage").xpath('.//text()').extract()[0].strip(),
 			'price': moto.css(".price").xpath('.//span/text()').extract()[0].split()[1],
