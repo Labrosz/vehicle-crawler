@@ -1,4 +1,4 @@
-# Update Oct-2017: This project has been moved to a private(bitbucket) repositoty and will be released after its development is finished
+# Update Oct-2017: This project has been moved to a private(bitbucket) repository and will be released after its development is finished
 
 # Vehicle-crawler
 A web crawler to collect vehicle classifieds and send them to a web server. The web server can later be used to organize the data into a database.
